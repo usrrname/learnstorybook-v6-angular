@@ -23,6 +23,9 @@
     "@angular/platform-browser": "~10.1.5",
     "@angular/platform-browser-dynamic": "~10.1.5",
     "@angular/router": "~10.1.5",
+    "@ngxs/devtools-plugin": "^3.7.0",
+    "@ngxs/logger-plugin": "^3.7.0",
+    "@ngxs/store": "^3.7.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
@@ -38,6 +41,7 @@
     "@storybook/addon-actions": "^6.0.26",
     "@storybook/addon-essentials": "^6.0.26",
     "@storybook/addon-links": "^6.0.26",
+    "@storybook/addon-storyshots": "^6.0.26",
     "@storybook/angular": "^6.0.26",
     "@testing-library/angular": "^10.1.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -95,20 +99,22 @@
       "^assets/(.*)$": "<rootDir>/src/assets/$1",
       "^environments/(.*)$": "<rootDir>/src/environments/$1",
       "\\.(css|less)$": "<rootDir>/src/jest-config/styleMock.js",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/jest-config/fileMock.js"
-    },
-    "transform": {
-      "^.+\\.(ts|html)$": "ts-jest",
-      "^.+\\.js$": "babel-jest"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node",
-      ".html"
-    ]
-  }
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/jest-config/fileMock.js",
+      "jest-preset-angular/(.*)$": "<rootDir>/../node_modules/jest-preset-angular/build/$1"
+    }
+  },
+  "transform": {
+    "^.+\\.(ts|html)$": "ts-jest",
+    "^.+\\.js$": "babel-jest",
+    "^.+\\.stories\\.[jt]sx?$": "@storybook/addon-storyshots/injectFileName"
+  },
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json",
+    "node",
+    ".html"
+  ]
 }

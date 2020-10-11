@@ -1,16 +1,20 @@
 import { AppComponent } from './app.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { InboxScreenComponent } from './components/04-data/inbox-screen.component';
+import { PureInboxScreenComponent } from './components/04-data/pure-inbox-screen.component';
+import { TaskComponent } from './components/01-task/task.component';
+import { TaskListComponent } from './components/02-task-list/task-list.component';
 import { TestBed } from '@angular/core/testing';
 import { render } from '@testing-library/angular';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+      imports: [],
       declarations: [
-        AppComponent
+        AppComponent,
+        InboxScreenComponent,
+        TaskListComponent,
+        TaskComponent
       ],
     }).compileComponents();
   });
@@ -18,26 +22,19 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(app).toBeDefined();
   });
 
-  it(`should have as title 'taskbox'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it(`should be no errors`, () => {
+    const fixture = TestBed.createComponent(PureInboxScreenComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('taskbox');
-  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('taskbox app is running!');
+    expect(app.error).toBeNull();
   });
 });
 
 describe('AppComponent', () => {
   it('should render the component', async () => {
-    const { getByText } = await render(AppComponent);
-    expect(getByText('Welcome'));
+    await render(InboxScreenComponent);
   });
 });

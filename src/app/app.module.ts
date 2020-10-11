@@ -1,18 +1,25 @@
+import { NgxsModule, Store } from '@ngxs/store';
+
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { InboxScreenComponent } from './components/04-data/inbox-screen.component';
 import { NgModule } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { PureInboxScreenComponent } from './components/04-data/pure-inbox-screen.component';
+import { TaskModule } from './components/01-task/task.module';
+import { TasksState } from './state/task.state';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, InboxScreenComponent, PureInboxScreenComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    TaskModule,
+    NgxsModule.forRoot([TasksState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
