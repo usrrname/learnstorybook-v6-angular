@@ -11,7 +11,8 @@
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook",
-    "jest": "jest --watch"
+    "jest": "jest --watch",
+    "chromatic": "npx chromatic --project-token x2qb5zezsg"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +41,7 @@
     "@compodoc/compodoc": "^1.1.11",
     "@storybook/addon-actions": "^6.0.26",
     "@storybook/addon-essentials": "^6.0.26",
+    "@storybook/addon-knobs": "^6.0.26",
     "@storybook/addon-links": "^6.0.26",
     "@storybook/addon-storyshots": "^6.0.26",
     "@storybook/angular": "^6.0.26",
@@ -48,6 +50,7 @@
     "@types/jest": "^26.0.14",
     "@types/node": "^12.11.1",
     "babel-loader": "^8.1.0",
+    "chromatic": "^5.2.0",
     "codelyzer": "^6.0.0",
     "jest": "^26.5.2",
     "jest-preset-angular": "^8.3.1",

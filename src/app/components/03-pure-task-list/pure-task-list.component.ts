@@ -11,6 +11,7 @@ export class PureTaskListComponent implements OnInit {
   constructor() { }
 
   tasksInOrder: Task[] = [];
+
   @Input() loading = false;
 
   @Output() onPinTask: EventEmitter<any> = new EventEmitter();

@@ -64,7 +64,7 @@ export class TasksState {
     const { error } = state;
     return error;
   }
-  //
+
   // triggers the PinTask action, similar to redux
   @Action(PinTask)
   pinTask({ patchState, getState }: StateContext<TaskStateModel>, { payload }: PinTask): void {

@@ -17,6 +17,7 @@ export const taskData = {
   state: 'Task_INBOX',
   updated_at: new Date(2019, 0, 1, 9, 0),
 };
+
 export const Default = () => ({
   component: TaskComponent,
   props: {

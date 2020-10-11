@@ -1,40 +1,29 @@
+import { Observable, of } from 'rxjs';
+
 import { AppComponent } from './app.component';
 import { InboxScreenComponent } from './components/04-data/inbox-screen.component';
-import { PureInboxScreenComponent } from './components/04-data/pure-inbox-screen.component';
-import { TaskComponent } from './components/01-task/task.component';
-import { TaskListComponent } from './components/02-task-list/task-list.component';
+import { Store } from '@ngxs/store';
+import { TaskModule } from './components/01-task/task.module';
 import { TestBed } from '@angular/core/testing';
-import { render } from '@testing-library/angular';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [],
-      declarations: [
-        AppComponent,
-        InboxScreenComponent,
-        TaskListComponent,
-        TaskComponent
-      ],
-    }).compileComponents();
-  });
+describe('App Component', () => {
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeDefined();
-  });
+  beforeEach((() => {
+    let store: Store;
+    let actions$: Observable<any>;
 
-  it(`should be no errors`, () => {
-    const fixture = TestBed.createComponent(PureInboxScreenComponent);
-    const app = fixture.componentInstance;
+    TestBed.configureTestingModule({
+      declarations: [AppComponent, InboxScreenComponent],
+      imports: [TaskModule]
+    });
 
-    expect(app.error).toBeNull();
-  });
-});
+    store = TestBed.inject(Store);
+    spyOn(store, 'select').and.returnValue(of(null)); // be sure to mock the implementation here
+    spyOn(store, 'selectSnapshot').and.returnValue(null); // same here
+  }));
 
-describe('AppComponent', () => {
-  it('should render the component', async () => {
-    await render(InboxScreenComponent);
+  it('should render the component', () => {
+    const fixture = TestBed.createComponent(InboxScreenComponent);
+    expect(fixture.componentInstance).toBeDefined();
   });
 });

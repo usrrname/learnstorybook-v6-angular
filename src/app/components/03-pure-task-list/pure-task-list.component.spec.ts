@@ -2,6 +2,7 @@ import { PureTaskListComponent } from './pure-task-list.component';
 import { TaskComponent } from '../01-task/task.component';
 import { render } from '@testing-library/angular';
 import { withPinnedTasksData } from './pure-task-list.stories';
+
 describe('PureTaskList component', () => {
   it('renders pinned tasks at the start of the list', async () => {
     const mockedActions = jest.fn();
