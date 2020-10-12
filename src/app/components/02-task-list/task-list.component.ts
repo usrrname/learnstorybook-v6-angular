@@ -7,7 +7,11 @@ import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-list',
-  templateUrl: './task-list.component.html'
+  template: `<app-pure-task-list
+              [tasks]="tasks$ | async"
+              (onArchiveTask)="archiveTask($event)"
+              (onPinTask)="pinTask($event)"
+              ></app-pure-task-list>`
 })
 export class TaskListComponent implements OnInit {
   @Select(TasksState.getAllTasks) tasks$: Observable<Task[]>;
@@ -15,6 +19,7 @@ export class TaskListComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {}
+
   archiveTask(id: string): void {
     this.store.dispatch(new ArchiveTask(id));
   }

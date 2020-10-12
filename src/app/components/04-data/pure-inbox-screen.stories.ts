@@ -1,4 +1,4 @@
-import { Meta, moduleMetadata } from '@storybook/angular';
+import { Meta, Story, moduleMetadata } from '@storybook/angular';
 import { NgxsModule, Store } from '@ngxs/store';
 
 import { PureInboxScreenComponent } from './pure-inbox-screen.component';
@@ -15,23 +15,22 @@ export default {
     }),
   ],
   argTypes: {
-    error : {
-      control: {
-        type: 'boolean'
-      }
-    }
+   error: { control: 'error' }
   }
 } as Meta;
 
-// inbox screen default state
-export const Default = () => ({
+const Template: Story<PureInboxScreenComponent> = (args: PureInboxScreenComponent) => ({
   component: PureInboxScreenComponent,
+  props: args,
 });
 
+// inbox screen default state
+export const Default = Template.bind({});
+Default.args = {};
+
 // inbox screen error state
-export const Error = () => ({
-  component: PureInboxScreenComponent,
-  props: {
-    error: true,
-  },
-});
+export const Error = Template.bind({});
+Error.args = {
+  error: true
+};
+
