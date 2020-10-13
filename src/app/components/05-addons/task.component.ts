@@ -13,7 +13,7 @@ import { Task } from '../../models/task.model';
                   <!-- This is the input for our task title. In practice we would probably update the styles for this element
               but for this tutorial, let's fix the problem with an inline style:
               -->
-                  <input type="text" [value]="task.title" class="list-item {{ task?.state }}"
+                  <input type="text" [(value)]="task.title" class="list-item {{ task?.state }}"
                   placeholder="Change value in Controls tab"
                   readonly='true'
                   [ngStyle]="{textOverflow:'ellipsis'}"/>
@@ -27,9 +27,7 @@ import { Task } from '../../models/task.model';
 })
 
 export class TaskComponent implements OnInit {
-/**
- * @param task
- */
+
   @Input() public task: Task = {
     id: '1',
     title: 'Test Input',

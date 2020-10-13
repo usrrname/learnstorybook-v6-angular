@@ -4,6 +4,7 @@ import { NgxsModule, Store } from '@ngxs/store';
 import { PureInboxScreenComponent } from './pure-inbox-screen.component';
 import { TaskModule } from '../01-task/task.module';
 import { TasksState } from '../../state/task.state';
+import { boolean } from '@storybook/addon-knobs';
 
 export default {
   title: '4: Data/Pure Inbox Screen',
@@ -15,13 +16,15 @@ export default {
     }),
   ],
   argTypes: {
-   error: { control: 'error' }
+   error: { control: 'error', type: 'boolean' },
   }
 } as Meta;
 
 const Template: Story<PureInboxScreenComponent> = (args: PureInboxScreenComponent) => ({
   component: PureInboxScreenComponent,
-  props: args,
+  props: {
+    error: boolean('error', args.error)
+  }
 });
 
 // inbox screen default state

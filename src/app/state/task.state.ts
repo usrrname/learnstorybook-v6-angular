@@ -96,7 +96,7 @@ export class TasksState {
 
   // function to handle how the state should be updated when the action is triggered
   @Action(AppError)
-  setAppError({ patchState, getState }: StateContext<TaskStateModel>, { payload }: AppError): void {
+  setAppError({ patchState, getState }: StateContext<TaskStateModel>): void {
     const state = getState();
     patchState({
       error: !state.error,

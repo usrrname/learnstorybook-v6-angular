@@ -2,7 +2,6 @@ import { Meta, Story } from '@storybook/angular';
 import { actionsData, taskData } from '../01-task/task.stories';
 import { text, withKnobs } from '@storybook/addon-knobs';
 
-import { Task } from 'src/app/models/task.model';
 import { TaskComponent } from './task.component';
 
 export default {
@@ -33,9 +32,9 @@ const Template: Story<TaskComponent> = (args: TaskComponent) => ({
 export const Defaults = Template.bind({});
 Defaults.props = {
   task: {
-    id: text('id', taskData.id),
-    title: text('title', taskData.title),
-    state: text('state', taskData.state)
+    id: text('id', '1'),
+    title: text('title', 'Test Input'),
+    state: text('state', 'Task_INBOX')
   },
   onPinTask: actionsData.onPinTask,
   onArchiveTask: actionsData.onArchiveTask,

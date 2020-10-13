@@ -1,0 +1,131 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Read Me" />
+
+### Known Issues
+
+- Console error in `Pure Inbox Screen` storybook Canvas
+      `“export 'StateContext' was not found in '@ngxs/store'”`
+      [StackOverflow](https://stackoverflow.com/questions/62150187/nxgs-warning-of-export-statecontext-was-not-found-in-ngxs-store)
+
+- Broken Storyshots in `src/storybook.test.js` with latest `jest-preset-angular` due to `setupJest` module being renamed to `setup-jest` on ^8.3.0 [#12392](https://github.com/storybookjs/storybook/issues/12392)
+`Configuration error: Could not locate module jest-preset-angular/build/setupJest`
+
+### Suggested Documentation Updates
+
+#### Ways to use Storybook with Angular
+- Use Storybook to develop a [component library](https://indepth.dev/how-to-build-a-component-library-with-angular-and-storybook/) that will be installed as a dependency
+- Storybook alongside an Angular app
+- Storybook as a style guide: no app, just for isolated component states
+- Storybook [instance](https://medium.com/front-end-weekly/creating-a-storybook-instance-including-stories-from-multiple-libraries-in-a-nrwl-nx-workspace-89009a2bddf7) in a monorepo with Nx
+
+
+For those who want Angular with scss:
+`npx -p @angular/cli ng new taskbox --style scss`
+
+ #### Jest Installation
+1. Jest Installation command for older ng-cli version leads to errors running Jest in "Setup Jest with Angular" of [Get Started](https://www.learnstorybook.com/intro-to-storybook/angular/en/get-started/)
+
+  - Install Jest for Angular 10.0.x
+  `npm i jest @types/jest jest-preset-angular @testing-library/angular @testing-library/jest-dom @babel/preset-env @babel/preset-typescript --save-dev`
+
+  This installs `jest-preset-angular@8.3.1`
+
+ - `package.json` codebock field for jest config copied from `jest-preset-angular`'s doc on [Exposed Configuration](https://github.com/thymikee/jest-preset-angular#exposed-configuration)
+   Codeblock after "Add a new field to package.json with the following:" should be:
+
+  ```"jest": {
+      "preset": "jest-preset-angular",
+      "setupFilesAfterEnv": [
+        "<rootDir>/src/jest-config/setup.ts"
+      ],
+      "transformIgnorePatterns": [
+        "node_modules/(?!@storybook/*)"
+      ],
+      "testPathIgnorePatterns": [
+        "../node_modules/",
+        "../dist/",
+        "../storybook-static/",
+        "../src/test.ts"
+      ],
+      "coveragePathIgnorePatterns": [
+        "/jest-config/",
+        "/node_modules/"
+      ],
+      "snapshotSerializers": [
+        "<rootDir>/node_modules/jest-preset-angular/AngularSnapshotSerializer.js",
+        "<rootDir>/node_modules/jest-preset-angular/HTMLCommentSerializer.js"
+      ],
+      "globals": {
+        "ts-jest": {
+          "tsConfig": "<rootDir>/tsconfig.spec.json",
+          "stringifyContentPathRegex": "\\.html$",
+          "diagnostics": false,
+          "isolatedModules": true,
+          "astTransformers": {
+            "before": [
+              "jest-preset-angular/build/InlineFilesTransformer",
+              "jest-preset-angular/build/StripStylesTransformer"
+            ]
+          }
+        }
+      },
+      "moduleNameMapper": {
+        "^src/(.*)$": "<rootDir>/src/$1",
+        "^app/(.*)$": "<rootDir>/src/app/$1",
+        "^assets/(.*)$": "<rootDir>/src/assets/$1",
+        "^environments/(.*)$": "<rootDir>/src/environments/$1",
+        "\\.(css|less)$": "<rootDir>/src/jest-config/styleMock.js",
+        "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/jest-config/fileMock.js",
+        "jest-preset-angular/(.*)$": "<rootDir>/../node_modules/jest-preset-angular/build/$1"
+      }
+    },
+    "transform": {
+      "^.+\\.(ts|html)$": "ts-jest",
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.stories\\.[jt]sx?$": "@storybook/addon-storyshots/injectFileName"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node",
+      ".html"
+    ]```
+
+
+4. After `TasksModule` is created and ngxs is installed, users are told to add imports of ngxs and its related modules in `src/app/app.module.ts`.
+   `TasksState` must be included in `NgxsModule.forRoot([])` to prevent console errors stating there is no provider for Store. (i.e. `NgxsModule.forRoot([TasksState])`)
+
+
+5. After installing Jest, it may make any Angular 10 user's life easier to uninstall Karma.
+
+  `npm uninstall karma karma-chrome-launcher karma-coverage-istanbul-reporter karma-jasmine karma-jasmine-html-reporter @types/jasmine @types/jasminewd2 jasmine-core jasmine-spec-reporter`
+
+- In `package.json` rename the `test` script to `"test": "jest",`.
+
+- In `angular.json`, remove the `test` block:
+  ``` "test": {
+    "builder": "@angular-devkit/build-angular:karma",
+    "options": {
+      "main": "src/test.ts",
+      "polyfills": "src/polyfills.ts",
+      "tsConfig": "tsconfig.spec.json",
+      "karmaConfig": "karma.conf.js",
+      "assets": [
+        "src/favicon.ico",
+        "src/assets"
+      ],
+      "styles": [
+        "src/styles.css"
+      ],
+      "scripts": []
+    }
+  } ```
+  Source: Alfredo Perez, ["Angular 10 - Setting up Jest"](https://dev.to/alfredoperez/angular-10-setting-up-jest-2m0l), dev.TO, Sep 21, 2020.
+
+
+6. To ignore TSLint complains for class methods prefixed with `on-` (like `onArchiveTask` or `onClick`), set
+`"no-output-on-prefix": false` in `tslint.json`
