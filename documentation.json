@@ -1031,7 +1031,7 @@
         },
         {
             "name": "TaskComponent",
-            "id": "component-TaskComponent-e5e039cb1b720bfa18aca01e63105bc7-1",
+            "id": "component-TaskComponent-6b8f064bd7304bccc5a0eeab6c83d231-1",
             "file": "src/app/components/05-addons/task.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1041,14 +1041,14 @@
             "selector": "app-task",
             "styleUrls": [],
             "styles": [],
-            "template": "<div class=\"list-item {{ task?.state }}\">                <label class=\"checkbox\">\n                  <input type=\"checkbox\" [defaultChecked]=\"task?.state === 'TASK_ARCHIVED'\" disabled=\"true\" name=\"checked\" />\n                  <span class=\"checkbox-custom\" (click)=\"onArchive(task.id)\"></span>\n                </label>\n                <div class=\"title\">\n                  <!-- This is the input for our task title. In practice we would probably update the styles for this element\n              but for this tutorial, let's fix the problem with an inline style:\n              -->\n                  <input type=\"text\" [value]=\"task.title\" class=\"list-item {{ task?.state }}\"\n                  placeholder=\"Change value in Controls tab\"\n                  readonly='true'\n                  [ngStyle]=\"{textOverflow:'ellipsis'}\"/>\n                </div>\n              <div class=\"actions\">\n                <a *ngIf=\"task?.state !== 'TASK_ARCHIVED'\" (click)=\"onPin(task.id)\">\n                  <span class=\"icon-star\"></span>\n                </a>\n              </div>\n            </div>",
+            "template": "<div class=\"list-item {{ task?.state }}\">                <label class=\"checkbox\">\n                  <input type=\"checkbox\" [defaultChecked]=\"task?.state === 'TASK_ARCHIVED'\" disabled=\"true\" name=\"checked\" />\n                  <span class=\"checkbox-custom\" (click)=\"onArchive(task.id)\"></span>\n                </label>\n                <div class=\"title\">\n                  <!-- This is the input for our task title. In practice we would probably update the styles for this element\n              but for this tutorial, let's fix the problem with an inline style:\n              -->\n                  <input type=\"text\" [(value)]=\"task.title\" class=\"list-item {{ task?.state }}\"\n                  placeholder=\"Change value in Controls tab\"\n                  readonly='true'\n                  [ngStyle]=\"{textOverflow:'ellipsis'}\"/>\n                </div>\n              <div class=\"actions\">\n                <a *ngIf=\"task?.state !== 'TASK_ARCHIVED'\" (click)=\"onPin(task.id)\">\n                  <span class=\"icon-star\"></span>\n                </a>\n              </div>\n            </div>",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
                 {
                     "name": "task",
                     "defaultValue": "{\n    id: '1',\n    title: 'Test Input',\n    state: 'Task_INBOX'\n  }",
-                    "line": 33,
+                    "line": 31,
                     "type": "Task"
                 }
             ],
@@ -1056,13 +1056,13 @@
                 {
                     "name": "onArchiveTask",
                     "defaultValue": "new EventEmitter()",
-                    "line": 41,
+                    "line": 39,
                     "type": "EventEmitter<any>"
                 },
                 {
                     "name": "onPinTask",
                     "defaultValue": "new EventEmitter()",
-                    "line": 39,
+                    "line": 37,
                     "type": "EventEmitter<any>"
                 }
             ],
@@ -1074,7 +1074,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45
+                    "line": 43
                 },
                 {
                     "name": "onArchive",
@@ -1087,7 +1087,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 50,
+                    "line": 48,
                     "jsdoctags": [
                         {
                             "name": "id",
@@ -1109,7 +1109,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 45,
                     "jsdoctags": [
                         {
                             "name": "id",
@@ -1126,7 +1126,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\n\nimport { Task } from '../../models/task.model';\n\n@Component({\n  selector: 'app-task',\n  template: `<div class=\"list-item {{ task?.state }}\">\n                <label class=\"checkbox\">\n                  <input type=\"checkbox\" [defaultChecked]=\"task?.state === 'TASK_ARCHIVED'\" disabled=\"true\" name=\"checked\" />\n                  <span class=\"checkbox-custom\" (click)=\"onArchive(task.id)\"></span>\n                </label>\n                <div class=\"title\">\n                  <!-- This is the input for our task title. In practice we would probably update the styles for this element\n              but for this tutorial, let's fix the problem with an inline style:\n              -->\n                  <input type=\"text\" [value]=\"task.title\" class=\"list-item {{ task?.state }}\"\n                  placeholder=\"Change value in Controls tab\"\n                  readonly='true'\n                  [ngStyle]=\"{textOverflow:'ellipsis'}\"/>\n                </div>\n              <div class=\"actions\">\n                <a *ngIf=\"task?.state !== 'TASK_ARCHIVED'\" (click)=\"onPin(task.id)\">\n                  <span class=\"icon-star\"></span>\n                </a>\n              </div>\n            </div>`,\n})\n\nexport class TaskComponent implements OnInit {\n/**\n * @param task\n */\n  @Input() public task: Task = {\n    id: '1',\n    title: 'Test Input',\n    state: 'Task_INBOX'\n  };\n\n  @Output() onPinTask: EventEmitter<any> = new EventEmitter();\n\n  @Output() onArchiveTask: EventEmitter<any> = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void { }\n\n  onPin(id: any): void {\n    this.onPinTask.emit(id);\n  }\n  onArchive(id: any): void {\n    this.onArchiveTask.emit(id);\n  }\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\n\nimport { Task } from '../../models/task.model';\n\n@Component({\n  selector: 'app-task',\n  template: `<div class=\"list-item {{ task?.state }}\">\n                <label class=\"checkbox\">\n                  <input type=\"checkbox\" [defaultChecked]=\"task?.state === 'TASK_ARCHIVED'\" disabled=\"true\" name=\"checked\" />\n                  <span class=\"checkbox-custom\" (click)=\"onArchive(task.id)\"></span>\n                </label>\n                <div class=\"title\">\n                  <!-- This is the input for our task title. In practice we would probably update the styles for this element\n              but for this tutorial, let's fix the problem with an inline style:\n              -->\n                  <input type=\"text\" [(value)]=\"task.title\" class=\"list-item {{ task?.state }}\"\n                  placeholder=\"Change value in Controls tab\"\n                  readonly='true'\n                  [ngStyle]=\"{textOverflow:'ellipsis'}\"/>\n                </div>\n              <div class=\"actions\">\n                <a *ngIf=\"task?.state !== 'TASK_ARCHIVED'\" (click)=\"onPin(task.id)\">\n                  <span class=\"icon-star\"></span>\n                </a>\n              </div>\n            </div>`,\n})\n\nexport class TaskComponent implements OnInit {\n\n  @Input() public task: Task = {\n    id: '1',\n    title: 'Test Input',\n    state: 'Task_INBOX'\n  };\n\n  @Output() onPinTask: EventEmitter<any> = new EventEmitter();\n\n  @Output() onArchiveTask: EventEmitter<any> = new EventEmitter();\n\n  constructor() { }\n\n  ngOnInit(): void { }\n\n  onPin(id: any): void {\n    this.onPinTask.emit(id);\n  }\n  onArchive(id: any): void {\n    this.onArchiveTask.emit(id);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1134,7 +1134,7 @@
                 "name": "constructor",
                 "description": "",
                 "args": [],
-                "line": 41
+                "line": 39
             },
             "implements": [
                 "OnInit"
@@ -1388,9 +1388,9 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/01-task/task.stories.ts",
+                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
                 "type": "",
-                "defaultValue": "() => ({\n  component: TaskComponent,\n  props: {\n    task: taskData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
+                "defaultValue": "() => ({\n  component: PureTaskListComponent,\n  template: `\n  <div style=\"padding: 3rem\">\n    <app-pure-task-list [tasks]=\"tasks\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n  </div>\n`,\n  props: {\n    tasks: defaultTasksData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
             },
             {
                 "name": "Default",
@@ -1404,17 +1404,17 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
+                "file": "src/app/components/04-data/pure-inbox-screen.stories.ts",
                 "type": "",
-                "defaultValue": "() => ({\n  component: PureTaskListComponent,\n  template: `\n  <div style=\"padding: 3rem\">\n    <app-pure-task-list [tasks]=\"tasks\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n  </div>\n`,\n  props: {\n    tasks: defaultTasksData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/04-data/pure-inbox-screen.stories.ts",
+                "file": "src/app/components/01-task/task.stories.ts",
                 "type": "",
-                "defaultValue": "Template.bind({})"
+                "defaultValue": "() => ({\n  component: TaskComponent,\n  props: {\n    task: taskData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
             },
             {
                 "name": "Defaults",
@@ -1436,7 +1436,7 @@
                 "name": "defaultTasksData",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/02-task-list/task-list.stories.ts",
+                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
                 "type": "[]",
                 "defaultValue": "[\n  { ...taskData, id: '1', title: 'Task 1' },\n  { ...taskData, id: '2', title: 'Task 2' },\n  { ...taskData, id: '3', title: 'Task 3' },\n  { ...taskData, id: '4', title: 'Task 4' },\n  { ...taskData, id: '5', title: 'Task 5' },\n  { ...taskData, id: '6', title: 'Task 6' },\n]"
             },
@@ -1444,7 +1444,7 @@
                 "name": "defaultTasksData",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
+                "file": "src/app/components/02-task-list/task-list.stories.ts",
                 "type": "[]",
                 "defaultValue": "[\n  { ...taskData, id: '1', title: 'Task 1' },\n  { ...taskData, id: '2', title: 'Task 2' },\n  { ...taskData, id: '3', title: 'Task 3' },\n  { ...taskData, id: '4', title: 'Task 4' },\n  { ...taskData, id: '5', title: 'Task 5' },\n  { ...taskData, id: '6', title: 'Task 6' },\n]"
             },
@@ -1452,7 +1452,7 @@
                 "name": "Empty",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/02-task-list/task-list.stories.ts",
+                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
                 "type": "",
                 "defaultValue": "() => ({\n  template: `\n        <div style=\"padding: 3rem\">\n          <app-pure-task-list [tasks]=\"[]\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n        </div>\n      `,\n})"
             },
@@ -1460,7 +1460,7 @@
                 "name": "Empty",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
+                "file": "src/app/components/02-task-list/task-list.stories.ts",
                 "type": "",
                 "defaultValue": "() => ({\n  template: `\n        <div style=\"padding: 3rem\">\n          <app-pure-task-list [tasks]=\"[]\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n        </div>\n      `,\n})"
             },
@@ -1500,7 +1500,7 @@
                 "name": "Loading",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/02-task-list/task-list.stories.ts",
+                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
                 "type": "",
                 "defaultValue": "() => ({\n  template: `\n        <div style=\"padding: 3rem\">\n          <app-pure-task-list [tasks]=\"[]\" loading=\"true\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n        </div>\n      `,\n})"
             },
@@ -1508,7 +1508,7 @@
                 "name": "Loading",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
+                "file": "src/app/components/02-task-list/task-list.stories.ts",
                 "type": "",
                 "defaultValue": "() => ({\n  template: `\n        <div style=\"padding: 3rem\">\n          <app-pure-task-list [tasks]=\"[]\" loading=\"true\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n        </div>\n      `,\n})"
             },
@@ -1652,7 +1652,7 @@
                 "name": "WithPinnedTasks",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/02-task-list/task-list.stories.ts",
+                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
                 "type": "",
                 "defaultValue": "() => ({\n  component: PureTaskListComponent,\n  template: `\n    <div style=\"padding: 3rem\">\n      <app-pure-task-list [tasks]=\"tasks\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n    </div>\n  `,\n  props: {\n    tasks: withPinnedTasksData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
             },
@@ -1660,7 +1660,7 @@
                 "name": "WithPinnedTasks",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
+                "file": "src/app/components/02-task-list/task-list.stories.ts",
                 "type": "",
                 "defaultValue": "() => ({\n  component: PureTaskListComponent,\n  template: `\n    <div style=\"padding: 3rem\">\n      <app-pure-task-list [tasks]=\"tasks\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n    </div>\n  `,\n  props: {\n    tasks: withPinnedTasksData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
             },
@@ -1668,7 +1668,7 @@
                 "name": "withPinnedTasksData",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/02-task-list/task-list.stories.ts",
+                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
                 "type": "[]",
                 "defaultValue": "[\n  ...defaultTasksData.slice(0, 5),\n  { id: '6', title: 'Task 6 (pinned)', state: 'TASK_PINNED' },\n]"
             },
@@ -1676,7 +1676,7 @@
                 "name": "withPinnedTasksData",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
+                "file": "src/app/components/02-task-list/task-list.stories.ts",
                 "type": "[]",
                 "defaultValue": "[\n  ...defaultTasksData.slice(0, 5),\n  { id: '6', title: 'Task 6 (pinned)', state: 'TASK_PINNED' },\n]"
             }
@@ -1745,56 +1745,6 @@
                     "defaultValue": "{\n  id: '1',\n  title: 'Test Task',\n  state: 'Task_INBOX',\n  updated_at: new Date(2019, 0, 1, 9, 0),\n}"
                 }
             ],
-            "src/app/components/02-task-list/task-list.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/02-task-list/task-list.stories.ts",
-                    "type": "",
-                    "defaultValue": "() => ({\n  component: PureTaskListComponent,\n  template: `\n  <div style=\"padding: 3rem\">\n    <app-pure-task-list [tasks]=\"tasks\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n  </div>\n`,\n  props: {\n    tasks: defaultTasksData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
-                },
-                {
-                    "name": "defaultTasksData",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/02-task-list/task-list.stories.ts",
-                    "type": "[]",
-                    "defaultValue": "[\n  { ...taskData, id: '1', title: 'Task 1' },\n  { ...taskData, id: '2', title: 'Task 2' },\n  { ...taskData, id: '3', title: 'Task 3' },\n  { ...taskData, id: '4', title: 'Task 4' },\n  { ...taskData, id: '5', title: 'Task 5' },\n  { ...taskData, id: '6', title: 'Task 6' },\n]"
-                },
-                {
-                    "name": "Empty",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/02-task-list/task-list.stories.ts",
-                    "type": "",
-                    "defaultValue": "() => ({\n  template: `\n        <div style=\"padding: 3rem\">\n          <app-pure-task-list [tasks]=\"[]\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n        </div>\n      `,\n})"
-                },
-                {
-                    "name": "Loading",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/02-task-list/task-list.stories.ts",
-                    "type": "",
-                    "defaultValue": "() => ({\n  template: `\n        <div style=\"padding: 3rem\">\n          <app-pure-task-list [tasks]=\"[]\" loading=\"true\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n        </div>\n      `,\n})"
-                },
-                {
-                    "name": "WithPinnedTasks",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/02-task-list/task-list.stories.ts",
-                    "type": "",
-                    "defaultValue": "() => ({\n  component: PureTaskListComponent,\n  template: `\n    <div style=\"padding: 3rem\">\n      <app-pure-task-list [tasks]=\"tasks\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n    </div>\n  `,\n  props: {\n    tasks: withPinnedTasksData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
-                },
-                {
-                    "name": "withPinnedTasksData",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/02-task-list/task-list.stories.ts",
-                    "type": "[]",
-                    "defaultValue": "[\n  ...defaultTasksData.slice(0, 5),\n  { id: '6', title: 'Task 6 (pinned)', state: 'TASK_PINNED' },\n]"
-                }
-            ],
             "src/app/components/03-pure-task-list/pure-task-list.stories.ts": [
                 {
                     "name": "Default",
@@ -1841,6 +1791,56 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/app/components/03-pure-task-list/pure-task-list.stories.ts",
+                    "type": "[]",
+                    "defaultValue": "[\n  ...defaultTasksData.slice(0, 5),\n  { id: '6', title: 'Task 6 (pinned)', state: 'TASK_PINNED' },\n]"
+                }
+            ],
+            "src/app/components/02-task-list/task-list.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/02-task-list/task-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n  component: PureTaskListComponent,\n  template: `\n  <div style=\"padding: 3rem\">\n    <app-pure-task-list [tasks]=\"tasks\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n  </div>\n`,\n  props: {\n    tasks: defaultTasksData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
+                },
+                {
+                    "name": "defaultTasksData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/02-task-list/task-list.stories.ts",
+                    "type": "[]",
+                    "defaultValue": "[\n  { ...taskData, id: '1', title: 'Task 1' },\n  { ...taskData, id: '2', title: 'Task 2' },\n  { ...taskData, id: '3', title: 'Task 3' },\n  { ...taskData, id: '4', title: 'Task 4' },\n  { ...taskData, id: '5', title: 'Task 5' },\n  { ...taskData, id: '6', title: 'Task 6' },\n]"
+                },
+                {
+                    "name": "Empty",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/02-task-list/task-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n  template: `\n        <div style=\"padding: 3rem\">\n          <app-pure-task-list [tasks]=\"[]\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n        </div>\n      `,\n})"
+                },
+                {
+                    "name": "Loading",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/02-task-list/task-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n  template: `\n        <div style=\"padding: 3rem\">\n          <app-pure-task-list [tasks]=\"[]\" loading=\"true\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n        </div>\n      `,\n})"
+                },
+                {
+                    "name": "WithPinnedTasks",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/02-task-list/task-list.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n  component: PureTaskListComponent,\n  template: `\n    <div style=\"padding: 3rem\">\n      <app-pure-task-list [tasks]=\"tasks\" (onPinTask)=\"onPinTask($event)\" (onArchiveTask)=\"onArchiveTask($event)\"></app-pure-task-list>\n    </div>\n  `,\n  props: {\n    tasks: withPinnedTasksData,\n    onPinTask: actionsData.onPinTask,\n    onArchiveTask: actionsData.onArchiveTask,\n  },\n})"
+                },
+                {
+                    "name": "withPinnedTasksData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/02-task-list/task-list.stories.ts",
                     "type": "[]",
                     "defaultValue": "[\n  ...defaultTasksData.slice(0, 5),\n  { id: '6', title: 'Task 6 (pinned)', state: 'TASK_PINNED' },\n]"
                 }
