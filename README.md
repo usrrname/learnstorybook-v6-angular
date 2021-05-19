@@ -1,6 +1,6 @@
 # Taskbox
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
+This project was first generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6, but upgraded to use 11.2.13.
 
 ## Development server
 
