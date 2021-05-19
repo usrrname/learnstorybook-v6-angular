@@ -48,13 +48,13 @@
     "@storybook/angular": "^6.3.0-alpha.34",
     "@testing-library/angular": "^10.1.0",
     "@testing-library/jest-dom": "^5.11.4",
-    "@types/jest": "^26.0.14",
+    "@types/jest": "^26.0.23",
     "@types/node": "^12.11.1",
     "babel-loader": "^8.1.0",
     "chromatic": "^5.2.0",
     "codelyzer": "^6.0.0",
-    "jest": "^26.5.2",
-    "jest-preset-angular": "^8.3.1",
+    "jest": "^26.6.3",
+    "jest-preset-angular": "^8.4.0",
     "protractor": "~7.0.0",
     "react-is": "^16.13.1",
     "ts-node": "~8.3.0",
@@ -64,7 +64,7 @@
   "jest": {
     "preset": "jest-preset-angular",
     "setupFilesAfterEnv": [
-      "<rootDir>/src/jest-config/setup.ts"
+      "<rootDir>/setup-jest.ts"
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!@storybook/*)"
@@ -78,10 +78,6 @@
     "coveragePathIgnorePatterns": [
       "/jest-config/",
       "/node_modules/"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-preset-angular/AngularSnapshotSerializer.js",
-      "<rootDir>/node_modules/jest-preset-angular/HTMLCommentSerializer.js"
     ],
     "globals": {
       "ts-jest": {
@@ -103,8 +99,7 @@
       "^assets/(.*)$": "<rootDir>/src/assets/$1",
       "^environments/(.*)$": "<rootDir>/src/environments/$1",
       "\\.(css|less)$": "<rootDir>/src/jest-config/styleMock.js",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/jest-config/fileMock.js",
-      "jest-preset-angular/(.*)$": "<rootDir>/../node_modules/jest-preset-angular/build/$1"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/jest-config/fileMock.js"
     }
   },
   "transform": {
